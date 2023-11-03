@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:39:03 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 19:12:41 by lyeh             ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf.h"
+#include "mlx_int.h"
 
-int	ft_print_int(int fd, int n)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	char	*num_str;
-	int		len;
-
-	num_str = ft_itoa(n);
-	len = ft_strlen(num_str);
-	write(fd, num_str, len);
-	free(num_str);
-	return (len);
+	XCloseDisplay(xvar->display);
 }

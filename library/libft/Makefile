@@ -7,6 +7,7 @@ MAIN_SRCS	= ft_isalpha.c \
 			ft_isspace.c \
 			ft_itoa.c \
 			ft_atoi.c \
+			ft_atol.c \
 			ft_split.c \
 			ft_toupper.c \
 			ft_tolower.c \
@@ -63,7 +64,7 @@ AR			= ar
 RM			= rm -f
 
 # Define compiler flags
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 # Define archive creation flags
 # 	create, replace with object files and update symbol table

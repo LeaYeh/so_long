@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:39:03 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 19:12:41 by lyeh             ###   ########.fr       */
+/*   Created: 2023/10/31 21:45:18 by lyeh              #+#    #+#             */
+/*   Updated: 2023/10/31 21:45:35 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf.h"
+#include "get_next_line.h"
 
-int	ft_print_int(int fd, int n)
+void	remove_last_newline(char **s)
 {
-	char	*num_str;
-	int		len;
+	int	len;
 
-	num_str = ft_itoa(n);
-	len = ft_strlen(num_str);
-	write(fd, num_str, len);
-	free(num_str);
-	return (len);
+	len = ft_strlen(*s);
+	if (*s == NULL || **s == '\0')
+		return ;
+	if (len > 0 && (*s)[len - 1] == '\n')
+	{
+		(*s)[len - 1] = '\0';
+	}
 }

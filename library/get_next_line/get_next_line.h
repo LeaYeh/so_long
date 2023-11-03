@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:39:03 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 19:12:41 by lyeh             ###   ########.fr       */
+/*   Created: 2023/09/23 14:48:11 by lyeh              #+#    #+#             */
+/*   Updated: 2023/10/31 21:44:42 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/resource.h>
+# include "libft.h"
 
-int	ft_print_int(int fd, int n)
-{
-	char	*num_str;
-	int		len;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
-	num_str = ft_itoa(n);
-	len = ft_strlen(num_str);
-	write(fd, num_str, len);
-	free(num_str);
-	return (len);
-}
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
+
+char	*get_next_line(int fd);
+void	remove_last_newline(char **s);
+
+#endif

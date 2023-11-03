@@ -1,10 +1,10 @@
-NAME		:= so_long
-SRC_DIR		:= source
-BUILD_DIR	:= build
-LIB_DIR		:= library
-MLX_DIR		:= $(LIB_DIR)/mlx
-LIBFT_DIR	:= $(LIB_DIR)/libft
-DPRINTF_DIR	:= $(LIB_DIR)/ftdprintf
+NAME			:= so_long
+SRC_DIR			:= source
+BUILD_DIR		:= build
+LIB_DIR			:= library
+MLX_DIR			:= $(LIB_DIR)/mlx
+LIBFT_DIR		:= $(LIB_DIR)/libft
+DPRINTF_DIR		:= $(LIB_DIR)/ftdprintf
 
 SRCS		:= so_long.c
 SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))

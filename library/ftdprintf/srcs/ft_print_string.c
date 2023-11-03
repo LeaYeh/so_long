@@ -6,11 +6,11 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:27:30 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/19 17:13:29 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/10/31 19:12:43 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_dprintf.h"
 
 int	ft_print_string(int fd, char *s)
 {
