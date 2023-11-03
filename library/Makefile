@@ -6,9 +6,9 @@ MLX_BUILD_DIR	:= minilibx_linux
 MLX_DIR			:= mlx
 BUILD_DIR		:= build
 
-AR_FILES	:= $(LIBFT_DIR)/libft.a \
-			$(DPRINTF_DIR)/libftdprintf.a \
-			$(GNL_DIR)/libgnl.a
+AR_FILES	:= $(BUILD_DIR)/libft.a \
+			$(BUILD_DIR)/libftdprintf.a \
+			$(BUILD_DIR)/libgnl.a
 
 
 AR			= ar
@@ -20,7 +20,10 @@ ARFLAGS		= -crs
 
 all:		$(NAME)
 
-$(NAME):
+$(NAME):	premake $(AR_FILES)
+			$(AR) $(ARFLAGS) $(NAME) $(AR_FILES)
+
+premake:	
 			@make -C $(LIBFT_DIR) bonus
 			@make -C $(DPRINTF_DIR) all
 			@make -C $(GNL_DIR) all
@@ -30,7 +33,6 @@ $(NAME):
 			@make -C $(MLX_BUILD_DIR) all
 			@mkdir -p $(MLX_DIR)
 			@cp $(MLX_BUILD_DIR)/*.a $(MLX_BUILD_DIR)/mlx.h $(MLX_DIR)
-			$(AR) $(ARFLAGS) $(NAME) $(AR_FILES)
 
 clean:
 			@make -C $(LIBFT_DIR) clean
