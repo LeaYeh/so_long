@@ -9,7 +9,8 @@ AR_FILES		:= $(LIB_DIR)/build/libft.a \
 
 SRCS		:= main.c \
 			game.c \
-			map.c
+			map.c \
+			utils.c
 SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS 		:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
@@ -28,6 +29,7 @@ endif
 
 CC			= cc
 RM			= rm -f
+# CFLAGS		= -Wall -Wextra -Werror -g
 CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
@@ -39,7 +41,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 all: 		$(NAME)
 
 $(NAME): 	premake $(OBJS)
-			$(CC) $(CFLAGS) $(LIB_DIR)/build/libftdprintf.a $(OBJS) -o $(NAME) $(MLX_FLAGS)
+			$(CC) $(CFLAGS) $(LIB_DIR)/build/libftdprintf.a $(LIB_DIR)/build/libgnl.a $(OBJS) -o $(NAME) $(MLX_FLAGS)
 
 premake:
 			@make -C $(LIB_DIR)

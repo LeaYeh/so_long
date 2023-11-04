@@ -11,6 +11,7 @@
 # include <mlx.h>
 # include "libft.h"
 # include "ft_dprintf.h"
+# include "get_next_line.h"
 
 # ifdef __linux__
 #  define OS "linux"
@@ -43,7 +44,9 @@
 # define WINDOW_TITLE "so_long"
 # define WINDOW_WIDTH 1366
 # define WINDOW_HEIGHT 768
-# define BUFFER_SIZE 128
+# ifndef BUFFER_SIZE
+# 	define BUFFER_SIZE 128
+# endif
 
 // # define WINDOW_HEIGHT 768
 
@@ -51,6 +54,7 @@ typedef struct s_game {
 	void	*mlx;
 	void	*window;
 	char	**map;
+	char	*map_path;
 	int		map_fd;
 	int		map_width;
 	int		map_height;
@@ -58,5 +62,8 @@ typedef struct s_game {
 
 void	init_game(t_game *game);
 bool	init_map(t_game *game, int argc, char **argv);
+
+void	remove_last_newline(char **s);
+int		get_array_len(void **arr);
 
 #endif
