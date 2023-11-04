@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/04 00:06:38 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/04 17:41:22 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,6 @@ bool	parse_map_size(t_game *game)
 	return (true);
 }
 
-void	free_map(t_game *game, int idx)
-{
-	int	i;
-
-	i = 0;
-	while (i < idx)
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
-}
-
 bool	load_map(t_game *game)
 {
 	char	*line;
@@ -116,6 +103,34 @@ bool	load_map(t_game *game)
 	return (true);
 }
 
+bool	check_map_input(t_game *game)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < game->map_height)
+	{
+		col = 0;
+		while (col < game->map_width)
+		{
+			if (game->map[row][col] == 'P')
+				game->player_cnt++;
+			else if (game->map[row][col] == 'C')
+				game->collect_cnt++;
+			else if (game->map[row][col] == 'E')
+				game->exit_cnt++;
+			else if (game->map[row][col] == 'M')
+				game->monster_cnt++;
+			else if (game->map[row][col] != '0' || game->map[row][col] != '1')
+				return (false);
+			col++;
+		}
+		row++;
+	}
+	return (true);
+}
+
 bool	init_map(t_game *game, int argc, char **argv)
 {
 	if (!limit_args(game, argc, argv))
@@ -124,7 +139,5 @@ bool	init_map(t_game *game, int argc, char **argv)
 		return (false);
 	if (!open_map_file(game) || !load_map(game))
 		return (false);
-	close(game->map_fd);
-	exit(1);
 	return (true);
 }

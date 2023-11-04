@@ -10,7 +10,8 @@ AR_FILES		:= $(LIB_DIR)/build/libft.a \
 SRCS		:= main.c \
 			game.c \
 			map.c \
-			utils.c
+			utils.c \
+			free.c
 SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS 		:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 

@@ -58,12 +58,26 @@ typedef struct s_game {
 	int		map_fd;
 	int		map_width;
 	int		map_height;
+	int		player_cnt;
+	int		monster_cnt;
+	int		collect_cnt;
+	int		exit_cnt;
 }	t_game;
+
+// typedef struct s_map {
+// 	char	**grid;
+// 	char	*file_path;
+// 	int		fd;
+// 	int		width;
+// 	int		height;
+// }	t_map;
 
 void	init_game(t_game *game);
 bool	init_map(t_game *game, int argc, char **argv);
 
 void	remove_last_newline(char **s);
 int		get_array_len(void **arr);
+
+void	free_map(t_game *game, int idx);
 
 #endif
