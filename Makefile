@@ -10,6 +10,8 @@ AR_FILES		:= $(LIB_DIR)/build/libft.a \
 SRCS		:= main.c \
 			game.c \
 			map.c \
+			map_checker.c \
+			position.c \
 			utils.c \
 			free.c
 SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))

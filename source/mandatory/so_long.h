@@ -50,34 +50,43 @@
 
 // # define WINDOW_HEIGHT 768
 
-typedef struct s_game {
-	void	*mlx;
-	void	*window;
-	char	**map;
-	char	*map_path;
-	int		map_fd;
-	int		map_width;
-	int		map_height;
+typedef struct s_pos {
+	int	row;
+	int	col;
+}	t_pos;
+
+typedef struct s_map {
+	char	**grid;
+	char	*file_path;
+	int		fd;
+	int		width;
+	int		height;
 	int		player_cnt;
 	int		monster_cnt;
 	int		collect_cnt;
 	int		exit_cnt;
+}	t_map;
+
+typedef struct s_game {
+	void	*mlx;
+	void	*window;
+	t_map	*map;
 }	t_game;
 
-// typedef struct s_map {
-// 	char	**grid;
-// 	char	*file_path;
-// 	int		fd;
-// 	int		width;
-// 	int		height;
-// }	t_map;
-
-void	init_game(t_game *game);
+bool	init_game(t_game *game);
 bool	init_map(t_game *game, int argc, char **argv);
 
-void	remove_last_newline(char **s);
-int		get_array_len(void **arr);
+bool	check_map_input(t_map *map);
+bool    check_object_count(t_map *map);
+bool    check_wall_surround(t_map *map);
+bool	check_workable(t_map *map);
 
-void	free_map(t_game *game, int idx);
+t_pos	*get_player_pos(t_map *map);
+
+int		get_array_len(void **arr);
+char	**copy_2darray(char **arr, int height);
+
+void	free_map(t_map *map);
+void    free_2darray(char **arr, int idx);
 
 #endif

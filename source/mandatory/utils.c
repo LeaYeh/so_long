@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:12:02 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/03 23:34:54 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/05 17:01:03 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,22 @@ int	get_array_len(void **arr)
 	return (i);
 }
 
-void	remove_last_newline(char **s)
+char	**copy_2darray(char **arr, int height)
 {
-	int	len;
+	char	**new_arr;
+	int		i;
 
-	len = ft_strlen(*s);
-	if (*s == NULL || **s == '\0')
-		return ;
-	if (len > 0 && (*s)[len - 1] == '\n')
+	new_arr = (char **)malloc(sizeof(char *) * (height + 1));
+	if (!new_arr)
+		return (NULL);
+	i = 0;
+	while (i < height)
 	{
-		(*s)[len - 1] = '\0';
+		new_arr[i] = ft_strdup(arr[i]);
+		if (!new_arr[i])
+			return (free_2darray(new_arr, i), NULL);
+		i++;
 	}
+	new_arr[height] = NULL;
+	return (new_arr);
 }

@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 14:48:11 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 17:01:53 by lyeh             ###   ########.fr       */
+/*   Created: 2023/11/05 13:22:12 by lyeh              #+#    #+#             */
+/*   Updated: 2023/11/05 16:49:50 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <sys/resource.h>
-# include "libft.h"
+#include "so_long.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+t_pos	*get_player_pos(t_map *map)
+{
+	int		row;
+	int		col;
+	t_pos	*pos;
 
-# ifndef MAX_FD
-#  define MAX_FD 1024
-# endif
-
-char	*get_next_line(int fd);
-bool	remove_last_newline(char **s);
-
-#endif
+	pos = (t_pos *)malloc(sizeof(t_pos));
+	if (!pos)
+		return (NULL);
+	row = 0;
+	while (row < map->height)
+	{
+		col = 0;
+		while (col < map->width)
+		{
+			if (map->grid[row][col] == 'P')
+			{
+				pos->row = row;
+				pos->col = col;
+				return (pos);
+			}
+			col++;
+		}
+		row++;
+	}
+	return (NULL);
+}
