@@ -89,4 +89,6 @@ char	**copy_2darray(char **arr, int height);
 void	free_map(t_map *map);
 void    free_2darray(char **arr, int idx);
 
+void	print_2darray(char **content, int height, int width);
+
 #endif

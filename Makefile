@@ -13,7 +13,8 @@ SRCS		:= main.c \
 			map_checker.c \
 			position.c \
 			utils.c \
-			free.c
+			free.c \
+			debug.c
 SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS 		:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
