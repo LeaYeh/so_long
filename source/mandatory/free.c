@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:40:38 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 01:09:59 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/05 18:16:12 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,11 @@ void	free_map(t_map *map)
 	free_2darray(map->grid, map->height);
     free(map->file_path);
     free(map);
+}
+
+void	free_game(t_game *game)
+{
+	free(game->mlx);
+	free(game->window);
+	free_map(game->map);
 }

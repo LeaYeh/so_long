@@ -86,6 +86,7 @@ t_pos	*get_player_pos(t_map *map);
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
 
+void	free_game(t_game *game);
 void	free_map(t_map *map);
 void    free_2darray(char **arr, int idx);
 

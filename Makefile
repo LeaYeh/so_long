@@ -33,8 +33,8 @@ endif
 
 CC			= cc
 RM			= rm -f
-# CFLAGS		= -Wall -Wextra -Werror -g
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g
+# CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 			@mkdir -p $(@D)
