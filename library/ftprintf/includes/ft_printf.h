@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:12:08 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/06 17:30:38 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/06 18:44:58 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	ft_print_uint(int fd, unsigned int n);
 int	ft_print_addr(int fd, unsigned long int n);
 int	ft_print_hex(int fd, unsigned int n, bool is_upper);
 int	ft_dprintf(int fd, const char *format, ...);
-int	ft_sprintf(char *store_str, char *format, ...);
+int	ft_sprintf(char **store_str, char *format, ...);
 
 #endif
