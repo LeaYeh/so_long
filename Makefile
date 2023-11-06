@@ -4,7 +4,7 @@ BUILD_DIR		:= build
 LIB_DIR			:= library
 MLX_DIR			:= $(LIB_DIR)/mlx
 AR_FILES		:= $(LIB_DIR)/build/libft.a \
-				$(LIB_DIR)/build/libftdprintf.a \
+				$(LIB_DIR)/build/libftprintf.a \
 				$(LIB_DIR)/build/libgnl.a
 
 SRCS		:= main.c \
@@ -12,6 +12,9 @@ SRCS		:= main.c \
 			map.c \
 			map_checker.c \
 			position.c \
+			draw.c \
+			background.c \
+			sprite.c \
 			utils.c \
 			free.c \
 			debug.c
@@ -45,7 +48,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 all: 		$(NAME)
 
 $(NAME): 	premake $(OBJS)
-			$(CC) $(CFLAGS) $(LIB_DIR)/build/libftdprintf.a $(LIB_DIR)/build/libgnl.a $(OBJS) -o $(NAME) $(MLX_FLAGS)
+			$(CC) $(CFLAGS) $(LIB_DIR)/build/libftprintf.a $(LIB_DIR)/build/libgnl.a $(OBJS) -o $(NAME) $(MLX_FLAGS)
 
 premake:
 			@make -C $(LIB_DIR)

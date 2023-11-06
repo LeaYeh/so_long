@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:19:02 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 19:12:47 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/06 14:50:22 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf.h"
+#include "ft_printf.h"
+#include "ft_utils.h"
 
 int	ft_print_format(int fd, char type, va_list *args)
 {
@@ -39,28 +40,6 @@ int	ft_print_format(int fd, char type, va_list *args)
 		ret += ft_print_char(fd, type);
 	}
 	return (ret);
-}
-
-bool	ft_has_subset(const char *s, const char *subset)
-{
-	int	i;
-	int	j;
-
-	if (!s || !subset)
-		return (false);
-	i = 0;
-	while (s[i])
-	{
-		j = 0;
-		while (subset[j])
-		{
-			if (s[i] == subset[j])
-				return (true);
-			j++;
-		}
-		i++;
-	}
-	return (false);
 }
 
 int	ft_printf_helper(int fd, const char *fmt, va_list *args)

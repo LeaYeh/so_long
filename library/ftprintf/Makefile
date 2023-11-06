@@ -1,10 +1,11 @@
-NAME		= libftdprintf.a
+NAME		= libftprintf.a
 BUILD_DIR	:= build
 SRC_DIR		:= srcs
 INC_DIR		:= includes
 LIBFT_DIR	:= ../libft
 
 MAIN_SRCS	:= ft_dprintf.c \
+			ft_sprintf.c \
 			ft_print_char.c \
 			ft_print_string.c \
 			ft_print_int.c \

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 16:45:09 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 19:00:26 by lyeh             ###   ########.fr       */
+/*   Created: 2023/09/22 21:39:03 by lyeh              #+#    #+#             */
+/*   Updated: 2023/11/06 17:30:56 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
-# include <stdarg.h>
-# include <limits.h>
-# include <stdlib.h>
-# include <stdbool.h>
+#include "ft_printf.h"
 
-int				ft_in_substr(const char c, const char *sub);
-char			*ft_utoa(unsigned long long_n);
-char			*ft_utox(unsigned long int nbr, bool in_upper);
-long long int	ft_pow(int base, int n);
+int	ft_print_int(int fd, int n)
+{
+	char	*num_str;
+	int		len;
 
-#endif
+	num_str = ft_itoa(n);
+	len = ft_strlen(num_str);
+	write(fd, num_str, len);
+	free(num_str);
+	return (len);
+}
