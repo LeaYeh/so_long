@@ -44,6 +44,9 @@
 # define WINDOW_TITLE "so_long"
 # define WINDOW_WIDTH 1366
 # define WINDOW_HEIGHT 768
+# define TEXTURES_FOLDER "../../assets/textures"
+# define BLOC_PX 100
+
 # ifndef BUFFER_SIZE
 # 	define BUFFER_SIZE 128
 # endif
@@ -71,25 +74,33 @@ typedef struct s_game {
 	void	*mlx;
 	void	*window;
 	t_map	*map;
+	void	*s_player[2];
+	void	*s_collect[6];
+	void	*s_background;
+	void	*s_wall;
+	void	*s_exit;
 }	t_game;
 
+/* Game */
 bool	init_game(t_game *game);
+/* Map */
 bool	init_map(t_game *game, int argc, char **argv);
-
 bool	check_map_input(t_map *map);
 bool    check_object_count(t_map *map);
 bool    check_wall_surround(t_map *map);
 bool	check_workable(t_map *map);
-
+/* Position */
 t_pos	*get_player_pos(t_map *map);
+/* Sprite */
 
+/* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
-
+/* Free */
 void	free_game(t_game *game);
 void	free_map(t_map *map);
 void    free_2darray(char **arr, int idx);
-
+/* Debug */
 void	print_2darray(char **content, int height, int width);
 
 #endif
