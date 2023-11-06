@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:46:03 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/30 22:58:32 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/06 19:52:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ long	ft_atol(const char *str);
 char	**ft_split(char const *s, char c);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlen(const char *str);
 size_t	ft_strnlen(const char *s, size_t maxlen);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);

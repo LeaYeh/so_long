@@ -19,6 +19,7 @@ MAIN_SRCS	= ft_isalpha.c \
 			ft_memchr.c \
 			ft_bzero.c \
 			ft_strncmp.c \
+			ft_strcmp.c \
 			ft_strlen.c \
 			ft_strnlen.c \
 			ft_strlcpy.c \
