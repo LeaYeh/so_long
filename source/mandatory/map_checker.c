@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:42:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 17:42:56 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/07 15:21:57 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	check_workable(t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			if (check_map[row][col] != '1' && check_map[row][col] != '*')
+			if (check_map[row][col] == 'C' || check_map[row][col] == 'E')
 				return (free(start_pos), free_2darray(check_map, map->height), false);
 			col++;
 		}
