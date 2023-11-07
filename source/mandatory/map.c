@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 17:19:07 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/07 15:33:16 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ bool	limit_args(t_map **map, int argc, char **argv)
 		ft_dprintf(2, "Need 1 argument.\n");
 		return (false);
 	}
-	(*map)->file_path = argv[1];
+	(*map)->file_path = ft_strdup(argv[1]);
+	if (!(*map)->file_path)
+		return (false);
 	return (true);
 }
 
