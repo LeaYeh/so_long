@@ -44,7 +44,7 @@
 # define WINDOW_TITLE "so_long"
 # define WINDOW_WIDTH 1366
 # define WINDOW_HEIGHT 768
-# define TEXTURES_FOLDER "../../assets/textures"
+# define TEXTURES_FOLDER "assets/textures"
 # define BLOC_PX 100
 
 # ifndef BUFFER_SIZE
@@ -92,7 +92,7 @@ bool	check_workable(t_map *map);
 /* Position */
 t_pos	*get_player_pos(t_map *map);
 /* Sprite */
-
+bool	init_sprites(t_game *game);
 /* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
