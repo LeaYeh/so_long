@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/06 22:14:13 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/07 15:29:20 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_sprite_path(char *category, int n)
 {
 	char	*path;
 
-	ft_sprintf(&path, "%s/%s/%s_%d.xpm", TEXTURES_FOLDER, category, n);
+	ft_sprintf(&path, "%s/%s/%d.xpm", TEXTURES_FOLDER, category, n);
 	return (path);
 }
 
@@ -66,11 +66,13 @@ bool	load_sprite(t_game *game, char *category, int num)
 	return (true);
 }
 
-void	init_sprites(t_game *game)
+bool	init_sprites(t_game *game)
 {
-	load_sprite(game, "background", 1);
-	load_sprite(game, "wall", 1);
-	load_sprite(game, "player", 2);
-	load_sprite(game, "collect", 6);
-	load_sprite(game, "exit", 1);
+	if (!load_sprite(game, "background", 1) || \
+		!load_sprite(game, "wall", 1) || \
+		!load_sprite(game, "player", 2) || \
+		!load_sprite(game, "collect", 6) || \
+		!load_sprite(game, "exit", 1))
+		return (false);
+	return (true);
 }
