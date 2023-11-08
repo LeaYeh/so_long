@@ -14,6 +14,10 @@ SRCS		:= main.c \
 			position.c \
 			draw.c \
 			background.c \
+			player.c \
+			wall.c \
+			collect.c \
+			exit.c \
 			sprite.c \
 			utils.c \
 			free.c \

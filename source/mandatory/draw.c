@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 21:13:29 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 21:29:53 by lyeh             ###   ########.fr       */
+/*   Created: 2023/11/06 12:58:12 by lyeh              #+#    #+#             */
+/*   Updated: 2023/11/07 19:19:09 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	init_game(t_game *game)
+void	draw_block(t_game *game, void *sprite, int row, int col)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (false);
-	game->window = mlx_new_window(
-			game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
-	if (!game->window)
-		return (false);
-	game->map = NULL;
-	game->collect_cnt = 0;
-	return (true);
+	if (row < -BLOC_PX || col < -BLOC_PX || \
+		row > WINDOW_HEIGHT || col > WINDOW_WIDTH)
+		return ;
+	mlx_put_image_to_window(game->mlx, game->window, sprite, col, row);
 }

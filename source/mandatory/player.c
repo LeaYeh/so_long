@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 21:13:29 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 21:29:53 by lyeh             ###   ########.fr       */
+/*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
+/*   Updated: 2023/11/07 21:23:18 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	init_game(t_game *game)
+void	draw_player(t_game *game)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (false);
-	game->window = mlx_new_window(
-			game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
-	if (!game->window)
-		return (false);
-	game->map = NULL;
-	game->collect_cnt = 0;
-	return (true);
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < game->map->height)
+	{
+		col = 0;
+		while (col < game->map->width)
+		{
+			if (game->map->grid[row][col] == 'P')
+			{
+				draw_block(game, game->s_player[0], row * BLOC_PX, col * BLOC_PX);
+				break;
+			}
+			col++;
+		}
+		row++;
+	}
+}
+
+void	process_player(t_game *game)
+{
+	draw_player(game);
 }

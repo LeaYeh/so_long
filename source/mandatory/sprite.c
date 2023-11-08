@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 15:29:20 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/07 21:39:01 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ bool	load_sprite(t_game *game, char *category, int num)
 		close(fd);
 		if (fd < 0)
 		{
+			perror("");
 			ft_dprintf(2, "Invalid texture path: %s\n", path);
 			return (free(path), false);
 		}

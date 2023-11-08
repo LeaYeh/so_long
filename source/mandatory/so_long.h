@@ -79,6 +79,7 @@ typedef struct s_game {
 	void	*s_background;
 	void	*s_wall;
 	void	*s_exit;
+	int		collect_cnt;
 }	t_game;
 
 /* Game */
@@ -93,6 +94,18 @@ bool	check_workable(t_map *map);
 t_pos	*get_player_pos(t_map *map);
 /* Sprite */
 bool	init_sprites(t_game *game);
+/* Draw */
+void	draw_block(t_game *game, void *sprite, int x, int y);
+/* Background */
+void	process_background(t_game *game);
+/* Player */
+void	process_player(t_game *game);
+/* Wall */
+void	process_wall(t_game *game);
+/* Collect */
+void	process_collect(t_game *game);
+/* Exit */
+void	process_exit(t_game *game);
 /* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
