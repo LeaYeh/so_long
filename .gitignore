@@ -56,5 +56,5 @@ dkms.conf
 .vscode/*
 input*
 out*
-.DS_Store
+**/.DS_Store*
 so_long

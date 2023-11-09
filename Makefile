@@ -1,3 +1,16 @@
+END				= $'\x1b[0m
+BOLD			= $'\x1b[1m
+UNDER			= $'\x1b[4m
+REV				= $'\x1b[7m
+GREY			= $'\x1b[30m
+RED				= $'\x1b[31m
+GREEN			= $'\x1b[32m
+YELLOW			= $'\x1b[33m
+BLUE			= $'\x1b[34m
+PURPLE			= $'\x1b[35m
+CYAN			= $'\x1b[36m
+WHITE			= $'\x1b[37m
+
 NAME			:= so_long
 SRC_DIR			:= source/mandatory
 BUILD_DIR		:= build
@@ -32,13 +45,14 @@ INCLUDES	:= -I$(LIB_DIR)/build -I$(INCL_DIR)
 
 UNAME		:= $(shell uname)
 ifeq ($(UNAME), Linux)
-	INCLUDES += -I/usr/include -I$(MLX_DIR)
-	MLX_LIB	= mlx
-	MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/lib/X11 -lXext -lX11
+	INCLUDES 		+= -I/usr/include -I$(MLX_DIR)
+	MLX_LIB			= mlx
+	MLX_LIB_PATH	= $(MLX_DIR)/libmlx.a
+	MLX_FLAGS 		= -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/lib/X11 -lXext -lX11
 else
-	INCLUDES += -I/opt/X11/include -I$(MLX_DIR)
-	MLX_LIB	= mlx_$(UNAME)
-	MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	INCLUDES 		+= -I/opt/X11/include -I$(MLX_DIR)
+	MLX_LIB_PATH	= $(MLX_DIR)/libmlx.dylib
+	MLX_FLAGS 		= -L$(MLX_DIR) -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit -l z
 endif
 
 CC			= cc
@@ -48,17 +62,20 @@ CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 			@mkdir -p $(@D)
-			$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+			@$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 .PHONY:		all bonus clean fclean re
 
 all: 		$(NAME)
 
 $(NAME): 	premake $(OBJS)
-			$(CC) $(CFLAGS) $(LIB_DIR)/build/libftprintf.a $(LIB_DIR)/build/libgnl.a $(OBJS) -o $(NAME) $(MLX_FLAGS)
+			$(CC) $(CFLAGS) $(MLX_LIB_PATH) $(AR_FILES) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+			@echo "$(GREEN)> All success! $(END)"
+
 
 premake:
 			@make -C $(LIB_DIR)
+			@echo "$(GREEN)> Pre-make success! $(END)"
 
 clean:
 			@make -C $(LIB_DIR) clean

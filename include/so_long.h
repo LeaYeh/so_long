@@ -15,7 +15,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# ifdef __APPLE__
+# ifdef __LINUX__
 #  define OS "linux"
 #  define LETTER_KEY_LEFT		97
 #  define LETTER_KEY_RIGHT		100
@@ -44,8 +44,8 @@
 # endif
 
 # define WINDOW_TITLE "so_long"
-# define WINDOW_WIDTH 1366
-# define WINDOW_HEIGHT 768
+# define WINDOW_WIDTH 1300
+# define WINDOW_HEIGHT 700
 # define TEXTURES_FOLDER "assets/textures"
 # define BLOC_PX 100
 
