@@ -6,17 +6,18 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 22:20:20 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:27:44 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 22:06:58 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	close_game(t_game *game)
+int	close_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
 	free_game(game);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 int	on_keybord(int key_code, t_game *game)
@@ -43,5 +44,6 @@ int	on_keybord(int key_code, t_game *game)
 
 void	register_event(t_game *game)
 {
+	mlx_hook(game->window, DestroyNotify, KeyReleaseMask, close_game, game);
 	mlx_hook(game->window, KeyRelease, KeyReleaseMask, on_keybord, game);
 }

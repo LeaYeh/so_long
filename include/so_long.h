@@ -130,7 +130,7 @@ void	process_collect(t_game *game);
 void	process_exit(t_game *game);
 /* Event */
 void	register_event(t_game *game);
-void	close_game(t_game *game);
+int		close_game(t_game *game);
 /* Action */
 bool	move(t_game *game, char item, int offset_row, int offset_col);
 bool	detect_obstacle(t_map *map, t_pos pos);
