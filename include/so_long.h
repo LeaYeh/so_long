@@ -80,6 +80,7 @@ typedef struct s_player {
 	t_pos	bottom_left;
 	t_pos	bottom_right;
 	int		direction;
+	int		move_cnt;
 }	t_player;
 
 typedef struct s_game {

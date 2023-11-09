@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:44:45 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 18:27:44 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	init_player(t_game *game)
 	assign_pos(&(game->player.bottom_right), \
 		pos->row + BLOC_PX, pos->col + BLOC_PX);
 	game->player.direction = 0;
+	game->player.move_cnt = 0;
 	return (true);
 }
 
@@ -48,6 +49,8 @@ void	move_player(t_game *game)
 		game->player.cur_pos.col * BLOC_PX);
 	assign_pos(&(game->player.cur_pos), 
 		game->player.next_pos.row, game->player.next_pos.col);
+	game->player.move_cnt++;
+	ft_dprintf(1, "Total move count: %d\n", game->player.move_cnt);
 }
 
 void	process_player(t_game *game)
