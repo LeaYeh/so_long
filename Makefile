@@ -75,10 +75,12 @@ $(NAME): 	premake $(OBJS)
 
 premake:
 			@make -C $(LIB_DIR)
+			@cp $(MLX_LIB_PATH) .
 			@echo "$(GREEN)> Pre-make success! $(END)"
 
 clean:
 			@make -C $(LIB_DIR) clean
+			$(RM) libmlx*
 			$(RM) $(OBJS)
 
 fclean:		clean
