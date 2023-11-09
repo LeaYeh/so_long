@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:24:57 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 21:43:32 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 17:55:19 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,22 @@ void	draw_exit(t_game *game)
 	}
 }
 
+void	interact_exit(t_game *game)
+{
+	t_pos	pos;
+
+	pos = game->player.cur_pos;
+	if (game->collect_cnt == game->map->collect_cnt && \
+		game->map->grid[pos.row][pos.col] == 'E')
+	{
+		ft_dprintf(1, "YOU WIN!\n");
+		close_game(game);
+	}
+}
+
 void	process_exit(t_game *game)
 {
-    printf("game->collect_cnt = %d\n", game->collect_cnt);
-    printf("game->map->collect_cnt = %d\n", game->map->collect_cnt);
     if (game->collect_cnt == game->map->collect_cnt)
-	    draw_exit(game);
+		draw_exit(game);
+	interact_exit(game);
 }

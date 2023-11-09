@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:56:46 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 19:23:44 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 17:45:12 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,4 @@ void	draw_background(t_game *game)
 		}
 		row++;
 	}
-}
-
-void	process_background(t_game *game)
-{
-	draw_background(game);
 }

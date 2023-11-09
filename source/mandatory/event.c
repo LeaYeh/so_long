@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 22:20:20 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 16:59:21 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 17:27:44 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	close_game(t_game *game)
 
 int	on_keybord(int key_code, t_game *game)
 {
-	ft_dprintf(1, "on_keybord = %d\n", key_code);
 	if (key_code == KEY_ESC)
 		close_game(game);
 	else if (key_code == ARROW_KEY_UP || key_code == LETTER_KEY_UP)

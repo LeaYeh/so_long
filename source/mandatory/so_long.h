@@ -112,6 +112,10 @@ void	assign_pos(t_pos *dest, int row, int col);
 bool	init_sprites(t_game *game);
 /* Draw */
 void	draw_block(t_game *game, void *sprite, int x, int y);
+void	draw_background(t_game *game);
+void	draw_wall(t_game *game);
+void	draw_collect(t_game *game);
+void	draw_player(t_game *game);
 /* Background */
 void	process_background(t_game *game);
 /* Player */
@@ -125,6 +129,7 @@ void	process_collect(t_game *game);
 void	process_exit(t_game *game);
 /* Event */
 void	register_event(t_game *game);
+void	close_game(t_game *game);
 /* Action */
 bool	move(t_game *game, char item, int offset_row, int offset_col);
 bool	detect_obstacle(t_map *map, t_pos pos);

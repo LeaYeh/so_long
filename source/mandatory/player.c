@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:03:10 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 17:44:45 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	move_player(t_game *game)
 void	process_player(t_game *game)
 {
 	move_player(game);
-	draw_player(game);
 }
