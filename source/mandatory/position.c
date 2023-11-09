@@ -6,15 +6,15 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:22:12 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 16:49:50 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 16:22:02 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_pos	*get_player_pos(t_map *map)
+t_pos	*get_item_pos(t_map *map, char item)
 {
-	int		row;
+		int		row;
 	int		col;
 	t_pos	*pos;
 
@@ -27,7 +27,7 @@ t_pos	*get_player_pos(t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			if (map->grid[row][col] == 'P')
+			if (map->grid[row][col] == item)
 			{
 				pos->row = row;
 				pos->col = col;
@@ -38,4 +38,10 @@ t_pos	*get_player_pos(t_map *map)
 		row++;
 	}
 	return (NULL);
+}
+
+void	assign_pos(t_pos *dest, int row, int col)
+{
+	dest->row = row;
+	dest->col = col;
 }

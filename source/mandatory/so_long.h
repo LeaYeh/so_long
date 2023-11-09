@@ -9,11 +9,13 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# ifdef __linux__
+# ifdef __APPLE__
 #  define OS "linux"
 #  define LETTER_KEY_LEFT		97
 #  define LETTER_KEY_RIGHT		100
@@ -70,20 +72,33 @@ typedef struct s_map {
 	int		exit_cnt;
 }	t_map;
 
+typedef struct s_player {
+	t_pos	cur_pos;
+	t_pos	next_pos;
+	t_pos	top_left;
+	t_pos	top_right;
+	t_pos	bottom_left;
+	t_pos	bottom_right;
+	int		direction;
+}	t_player;
+
 typedef struct s_game {
-	void	*mlx;
-	void	*window;
-	t_map	*map;
-	void	*s_player[2];
-	void	*s_collect[6];
-	void	*s_background;
-	void	*s_wall;
-	void	*s_exit;
-	int		collect_cnt;
+	void		*mlx;
+	void		*window;
+	t_map		*map;
+	t_player	player;
+	void		*s_player[2];
+	void		*s_collect[6];
+	void		*s_background;
+	void		*s_wall;
+	void		*s_exit;
+	int			collect_cnt;
 }	t_game;
 
 /* Game */
 bool	init_game(t_game *game);
+void	init_process(t_game *game);
+void	game_process(t_game *game);
 /* Map */
 bool	init_map(t_game *game, int argc, char **argv);
 bool	check_map_input(t_map *map);
@@ -91,7 +106,8 @@ bool    check_object_count(t_map *map);
 bool    check_wall_surround(t_map *map);
 bool	check_workable(t_map *map);
 /* Position */
-t_pos	*get_player_pos(t_map *map);
+t_pos	*get_item_pos(t_map *map, char item);
+void	assign_pos(t_pos *dest, int row, int col);
 /* Sprite */
 bool	init_sprites(t_game *game);
 /* Draw */
@@ -99,6 +115,7 @@ void	draw_block(t_game *game, void *sprite, int x, int y);
 /* Background */
 void	process_background(t_game *game);
 /* Player */
+bool	init_player(t_game *game);
 void	process_player(t_game *game);
 /* Wall */
 void	process_wall(t_game *game);
@@ -106,6 +123,12 @@ void	process_wall(t_game *game);
 void	process_collect(t_game *game);
 /* Exit */
 void	process_exit(t_game *game);
+/* Event */
+void	register_event(t_game *game);
+/* Action */
+bool	move(t_game *game, char item, int offset_row, int offset_col);
+bool	detect_obstacle(t_map *map, t_pos pos);
+bool	change_direction(t_game *game, char item, int direction);
 /* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);

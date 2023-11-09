@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:13:29 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 21:29:53 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 16:58:17 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,20 @@ bool	init_game(t_game *game)
 	game->map = NULL;
 	game->collect_cnt = 0;
 	return (true);
+}
+
+void	init_process(t_game *game)
+{
+	process_background(game);
+	process_wall(game);
+	process_collect(game);
+	process_exit(game);
+	process_player(game);
+}
+
+void	game_process(t_game *game)
+{
+	process_collect(game);
+	process_exit(game);
+	process_player(game);
 }

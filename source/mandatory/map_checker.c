@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:42:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 15:21:57 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/09 15:04:48 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	check_workable(t_map *map)
 	check_map = copy_2darray(map->grid, map->height);
 	if (!check_map)
 		return (false);
-	start_pos = get_player_pos(map);
+	start_pos = get_item_pos(map, 'P');
 	if (!start_pos)
 		return (free_2darray(check_map, map->height), false);
 	_flooding(map, check_map, start_pos->row, start_pos->col);

@@ -11,6 +11,8 @@ SRCS		:= main.c \
 			game.c \
 			map.c \
 			map_checker.c \
+			event.c \
+			action.c \
 			position.c \
 			draw.c \
 			background.c \
