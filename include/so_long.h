@@ -86,6 +86,8 @@ typedef struct s_player {
 typedef struct s_game {
 	void		*mlx;
 	void		*window;
+	int			win_bloc_width;
+	int			win_bloc_height;
 	t_map		*map;
 	t_player	player;
 	void		*s_player[2];
@@ -93,13 +95,16 @@ typedef struct s_game {
 	void		*s_background;
 	void		*s_wall;
 	void		*s_exit;
+	t_pos		window_offset;
 	int			collect_cnt;
 }	t_game;
 
 /* Game */
 bool	init_game(t_game *game);
+bool	init_camera(t_game *game);
 void	init_process(t_game *game);
 void	game_process(t_game *game);
+bool	offset_camera_by_player(t_game *game);
 /* Map */
 bool	init_map(t_game *game, int argc, char **argv);
 bool	check_map_input(t_map *map);

@@ -12,7 +12,9 @@ CYAN			= $'\x1b[36m
 WHITE			= $'\x1b[37m
 
 NAME			:= so_long
-SRC_DIR			:= source/mandatory
+SRC_DIR			:= source
+MAJOR_DIR		:= $(SRC_DIR)/mandatory
+BONUS_DIR		:= $(SRC_DIR)/bonus
 BUILD_DIR		:= build
 INCL_DIR		:= include
 LIB_DIR			:= library
@@ -38,8 +40,8 @@ SRCS		:= core/main.c \
 			object/exit.c \
 			tool/utils.c \
 			tool/debug.c
-SRCS		:= $(addprefix $(SRC_DIR)/, $(SRCS))
-OBJS 		:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
+SRCS		:= $(addprefix $(MAJOR_DIR)/, $(SRCS))
+OBJS 		:= $(patsubst $(MAJOR_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 INCLUDES	:= -I$(LIB_DIR)/build -I$(INCL_DIR)
 
@@ -60,7 +62,7 @@ RM			= rm -f
 # CFLAGS		= -Wall -Wextra -Werror -g
 CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+$(BUILD_DIR)/%.o: $(MAJOR_DIR)/%.c
 			@mkdir -p $(@D)
 			@$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
@@ -72,7 +74,6 @@ $(NAME): 	premake $(OBJS)
 			$(CC) $(CFLAGS) $(MLX_LIB_PATH) $(AR_FILES) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 			@echo "$(GREEN)> All success! $(END)"
 
-
 premake:
 			@make -C $(LIB_DIR)
 			@cp $(MLX_LIB_PATH) .
@@ -81,7 +82,7 @@ premake:
 clean:
 			@make -C $(LIB_DIR) clean
 			$(RM) libmlx*
-			$(RM) $(OBJS)
+			$(RM) -rf $(BUILD_DIR)
 
 fclean:		clean
 			@make -C $(LIB_DIR) fclean

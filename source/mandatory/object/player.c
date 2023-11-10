@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 18:27:44 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:27:53 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,12 @@ void	move_player(t_game *game)
 
 void	process_player(t_game *game)
 {
+	ft_dprintf(1, "haha\n");
 	move_player(game);
+	if (offset_camera_by_player(game))
+	{
+		draw_background(game);
+		draw_wall(game);
+		draw_collect(game);
+	}
 }
