@@ -51,7 +51,6 @@ clean:
 			@make -C $(LIBFT_DIR) clean
 			@make -C $(PRINTF_DIR) clean
 			@make -C $(GNL_DIR) clean
-			@make -C $(MLX_BUILD_DIR) clean
 			$(RM) -r $(BUILD_DIR)
 			$(RM) -rf $(MLX_DIR)
 
@@ -59,7 +58,6 @@ fclean:
 			@make -C $(LIBFT_DIR) fclean
 			@make -C $(PRINTF_DIR) fclean
 			@make -C $(GNL_DIR) fclean
-			@make -C $(MLX_BUILD_DIR) fclean
 			$(RM) -r $(BUILD_DIR)
 			$(RM) -rf $(MLX_DIR)
 			$(RM) $(NAME)

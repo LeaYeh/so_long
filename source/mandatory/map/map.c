@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/07 15:33:16 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:44:58 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	limit_args(t_map **map, int argc, char **argv)
 bool	open_map_file(t_map **map)
 {
 	const int	len = ft_strlen((*map)->file_path);
-	
+
 	if (len < 5)
 	{
 		ft_dprintf(2, "Invalid map file name.\n");
@@ -91,7 +91,7 @@ bool	load_map(t_map **map)
 			return (free_2darray((*map)->grid, i), free(line), false);
 		if ((int)ft_strlen(line) != (*map)->width)
 		{
-			ft_dprintf(2, 
+			ft_dprintf(2,
 				"Invalid shape of map (w: %d and h: %d, but got %d)\n",
 				(*map)->width, (*map)->height, ft_strlen(line));
 			return (free_2darray((*map)->grid, i), free(line), false);

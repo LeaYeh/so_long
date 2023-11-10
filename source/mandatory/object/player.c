@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:27:53 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:35:25 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	init_player(t_game *game)
 
 void	draw_player(t_game *game)
 {
-	draw_block(game, game->s_player[game->player.direction], 
+	draw_block(game, game->s_player[game->player.direction],
 		game->player.cur_pos.row * BLOC_PX,
 		game->player.cur_pos.col * BLOC_PX);
 }
@@ -44,10 +44,10 @@ void	move_player(t_game *game)
 {
 	if (detect_obstacle(game->map, game->player.next_pos))
 		return ;
-	draw_block(game, game->s_background, 
+	draw_block(game, game->s_background,
 		game->player.cur_pos.row * BLOC_PX,
 		game->player.cur_pos.col * BLOC_PX);
-	assign_pos(&(game->player.cur_pos), 
+	assign_pos(&(game->player.cur_pos),
 		game->player.next_pos.row, game->player.next_pos.col);
 	game->player.move_cnt++;
 	ft_dprintf(1, "Total move count: %d\n", game->player.move_cnt);

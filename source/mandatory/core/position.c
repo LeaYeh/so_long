@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:22:12 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 16:22:02 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:36:28 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pos	*get_item_pos(t_map *map, char item)
 {
-		int		row;
+	int		row;
 	int		col;
 	t_pos	*pos;
 

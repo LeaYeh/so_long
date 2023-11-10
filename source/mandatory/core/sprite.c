@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 20:01:25 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:36:41 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	*file_to_image(void *mlx_ptr, char *filename, int *width, int *height)
 		return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
 }
 
-void	load_sprite_category(t_game *game, char *category, char *file_path, int i)
+void	load_sprite_category(
+	t_game *game, char *category, char *file_path, int i)
 {
 	int		size;
 

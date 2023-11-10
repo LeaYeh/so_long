@@ -26,6 +26,7 @@ AR_FILES		:= $(LIB_DIR)/build/libft.a \
 SRCS		:= core/main.c \
 			core/game.c \
 			core/action.c \
+			core/camera.c \
 			core/sprite.c \
 			core/draw.c \
 			core/event.c \

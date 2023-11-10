@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:01:13 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:27:35 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:42:36 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	move(t_game *game, char item, int offset_row, int offset_col)
 		return (false);
 	if (item == 'P')
 		assign_pos(&(game->player.next_pos), \
-        	game->player.cur_pos.row + offset_row, \
+			game->player.cur_pos.row + offset_row, \
 			game->player.cur_pos.col + offset_col);
 	return (true);
 }
@@ -33,7 +33,7 @@ bool	move(t_game *game, char item, int offset_row, int offset_col)
 bool	change_direction(t_game *game, char item, int direction)
 {
 	if (item != 'P' && item != 'M')
-		return (false);	
+		return (false);
 	if (item == 'P')
 		game->player.direction = direction;
 	return (true);
