@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:50:51 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:59:29 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 18:43:16 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,12 @@ bool	_offset_row(t_game *game)
 		game->window_offset.row = \
 			(game->player.cur_pos.row - game->win_bloc_height / 2);
 		if (game->window_offset.row < 0)
-		{
 			game->window_offset.row = 0;
-			return (true);
-		}
 		else if (
 			game->window_offset.row + game->win_bloc_height > game->map->height)
-		{
 			game->window_offset.row = game->map->height - game->win_bloc_height;
-			return (true);
-		}
-		game->window_offset.row *= -1 * BLOC_PX;
+		game->window_offset.row *= -BLOC_PX;
+		return (true);
 	}
 	return (false);
 }
@@ -41,17 +36,12 @@ bool	_offset_col(t_game *game)
 		game->window_offset.col = \
 			(game->player.cur_pos.col - game->win_bloc_width / 2);
 		if (game->window_offset.col < 0)
-		{
 			game->window_offset.col = 0;
-			return (true);
-		}
 		else if (
 			game->window_offset.col + game->win_bloc_width > game->map->width)
-		{
 			game->window_offset.col = game->map->width - game->win_bloc_width;
-			return (true);
-		}
-		game->window_offset.col *= -1 * BLOC_PX;
+		game->window_offset.col *= -BLOC_PX;
+		return (true);
 	}
 	return (false);
 }

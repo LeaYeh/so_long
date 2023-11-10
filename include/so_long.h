@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:33:58 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 17:09:42 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 19:45:58 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# ifdef __LINUX__
+# ifdef __linux__
 #  define OS "linux"
 #  define LETTER_KEY_LEFT		97
 #  define LETTER_KEY_RIGHT		100
@@ -132,6 +132,7 @@ void	draw_background(t_game *game);
 void	draw_wall(t_game *game);
 void	draw_collect(t_game *game);
 void	draw_player(t_game *game);
+void	render_items(t_game *game);
 /* Background */
 void	process_background(t_game *game);
 /* Player */
@@ -155,6 +156,7 @@ int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
 /* Free */
 void	free_game(t_game *game);
+void	free_mlx(t_game *game);
 void	free_map(t_map *map);
 void	free_2darray(char **arr, int idx);
 /* Debug */

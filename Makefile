@@ -14,11 +14,9 @@ WHITE			= $'\x1b[37m
 NAME			:= so_long
 SRC_DIR			:= source
 MAJOR_DIR		:= $(SRC_DIR)/mandatory
-BONUS_DIR		:= $(SRC_DIR)/bonus
 BUILD_DIR		:= build
 INCL_DIR		:= include
 LIB_DIR			:= library
-MLX_DIR			:= $(LIB_DIR)/mlx
 AR_FILES		:= $(LIB_DIR)/build/libft.a \
 				$(LIB_DIR)/build/libftprintf.a \
 				$(LIB_DIR)/build/libgnl.a
@@ -45,23 +43,12 @@ SRCS		:= $(addprefix $(MAJOR_DIR)/, $(SRCS))
 OBJS 		:= $(patsubst $(MAJOR_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 INCLUDES	:= -I$(LIB_DIR)/build -I$(INCL_DIR)
-
-UNAME		:= $(shell uname)
-ifeq ($(UNAME), Linux)
-	INCLUDES 		+= -I/usr/include -I$(MLX_DIR)
-	MLX_LIB			= mlx
-	MLX_LIB_PATH	= $(MLX_DIR)/libmlx.a
-	MLX_FLAGS 		= -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/lib/X11 -lXext -lX11
-else
-	INCLUDES 		+= -I/opt/X11/include -I$(MLX_DIR)
-	MLX_LIB_PATH	= $(MLX_DIR)/libmlx.dylib
-	MLX_FLAGS 		= -L$(MLX_DIR) -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit -l z
-endif
+MLX_FLAGS	:= -Lminilibx-linux -lmlx -lXext -lX11
 
 CC			= cc
 RM			= rm -f
-# CFLAGS		= -Wall -Wextra -Werror -g
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g
+# CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 $(BUILD_DIR)/%.o: $(MAJOR_DIR)/%.c
 			@mkdir -p $(@D)
@@ -72,21 +59,19 @@ $(BUILD_DIR)/%.o: $(MAJOR_DIR)/%.c
 all: 		$(NAME)
 
 $(NAME): 	premake $(OBJS)
-			$(CC) $(CFLAGS) $(MLX_LIB_PATH) $(AR_FILES) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+			$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(AR_FILES) $(MLX_FLAGS) -o $(NAME)
 			@echo "$(GREEN)> All success! $(END)"
 
 premake:
-			@make -C $(LIB_DIR)
-			@cp $(MLX_LIB_PATH) .
+			@make -s -C $(LIB_DIR)
 			@echo "$(GREEN)> Pre-make success! $(END)"
 
 clean:
-			@make -C $(LIB_DIR) clean
-			$(RM) libmlx*
+			@make -s -C $(LIB_DIR) clean
 			$(RM) -rf $(BUILD_DIR)
 
 fclean:		clean
-			@make -C $(LIB_DIR) fclean
+			@make -s -C $(LIB_DIR) fclean
 			$(RM) $(NAME)
 
 re: 		fclean all

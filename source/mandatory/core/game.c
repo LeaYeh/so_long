@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:13:29 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:50:49 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 18:43:48 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,14 @@ bool	init_game(t_game *game)
 
 void	init_process(t_game *game)
 {
-	draw_background(game);
-	draw_wall(game);
-	draw_collect(game);
+	render_items(game);
 	process_exit(game);
-	draw_player(game);
 }
 
 void	game_process(t_game *game)
 {
 	process_player(game);
 	process_collect(game);
+	render_items(game);
 	process_exit(game);
-	draw_collect(game);
-	draw_player(game);
 }

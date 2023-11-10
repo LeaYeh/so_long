@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:36:41 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 18:49:55 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ char	*get_sprite_path(char *category, int n)
 {
 	char	*path;
 
-	if (ft_strcmp(OS, "macos"))
-		ft_sprintf(&path, "%s/%s/%d.png", TEXTURES_FOLDER, category, n);
-	else
-		ft_sprintf(&path, "%s/%s/%d.xpm", TEXTURES_FOLDER, category, n);
+	ft_sprintf(&path, "%s/%s/%d.xpm", TEXTURES_FOLDER, category, n);
 	return (path);
 }
 
 void	*file_to_image(void *mlx_ptr, char *filename, int *width, int *height)
 {
-	if (ft_strcmp(OS, "macos"))
-		return (mlx_png_file_to_image(mlx_ptr, filename, width, height));
-	else
-		return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
+	return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
 }
 
 void	load_sprite_category(
@@ -69,7 +63,7 @@ bool	load_sprite(t_game *game, char *category, int num)
 		if (fd < 0)
 		{
 			perror("");
-			ft_dprintf(2, "Invalid texture path: %s\n", path);
+			ft_dprintf(2, "Error\nInvalid texture path: %s\n", path);
 			return (free(path), false);
 		}
 		load_sprite_category(game, category, path, i);

@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:22:33 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:35:25 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 18:37:53 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ bool	init_player(t_game *game)
 		pos->row + BLOC_PX, pos->col + BLOC_PX);
 	game->player.direction = 0;
 	game->player.move_cnt = 0;
+	free(pos);
 	return (true);
 }
 
@@ -44,9 +45,6 @@ void	move_player(t_game *game)
 {
 	if (detect_obstacle(game->map, game->player.next_pos))
 		return ;
-	draw_block(game, game->s_background,
-		game->player.cur_pos.row * BLOC_PX,
-		game->player.cur_pos.col * BLOC_PX);
 	assign_pos(&(game->player.cur_pos),
 		game->player.next_pos.row, game->player.next_pos.col);
 	game->player.move_cnt++;
@@ -55,12 +53,6 @@ void	move_player(t_game *game)
 
 void	process_player(t_game *game)
 {
-	ft_dprintf(1, "haha\n");
 	move_player(game);
-	if (offset_camera_by_player(game))
-	{
-		draw_background(game);
-		draw_wall(game);
-		draw_collect(game);
-	}
+	offset_camera_by_player(game);
 }
