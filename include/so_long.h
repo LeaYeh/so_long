@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:33:58 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:34:35 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 17:09:42 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 128
 # endif
-
-// # define WINDOW_HEIGHT 768
 
 typedef struct s_pos {
 	int	row;
