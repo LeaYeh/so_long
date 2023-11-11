@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:12:08 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:44:02 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 14:50:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int		ft_printf(int fd, const char *format, ...);
 int		ft_dprintf(int fd, const char *format, ...);
 char	*copy_char(char c);
 void	lst_add_char(t_list **lst, char *ch);
-char	*convert_lst2str(t_list **ch_arr);
+void	handle_char(t_list **ch_arr, char *c);
+void	handle_string(t_list **ch_arr, char *s);
+void	handle_int(t_list **ch_arr, int n);
 int		ft_sprintf(char **store_str, char *format, ...);
 
 #endif

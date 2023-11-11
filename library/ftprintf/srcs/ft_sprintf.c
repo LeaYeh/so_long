@@ -6,41 +6,36 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:27:01 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:41:53 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 14:50:07 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_utils.h"
 
-void	handle_char(t_list **ch_arr, char *c)
+char	*convert_lst2str(t_list **ch_arr)
 {
-	lst_add_char(ch_arr, c);
-}
-
-void	handle_string(t_list **ch_arr, char *s)
-{
-	int	i;
-
-	if (!s)
-		s = "(null)";
-	i = 0;
-	while (s[i])
-		lst_add_char(ch_arr, copy_char(s[i++]));
-}
-
-void	handle_int(t_list **ch_arr, int n)
-{
-	char	*num_str;
 	int		i;
+	int		len;
+	char	*str;
+	t_list	*root;
 
-	num_str = ft_itoa(n);
-	if (!num_str)
-		return ;
+	root = *ch_arr;
+	len = ft_lstsize(*ch_arr);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (num_str[i])
-		lst_add_char(ch_arr, copy_char(num_str[i++]));
-	free(num_str);
+	while (i < len)
+	{
+		str[i] = *((char *)((*ch_arr)->content));
+		(*ch_arr) = (*ch_arr)->next;
+		i++;
+	}
+	str[len] = '\0';
+	*ch_arr = root;
+	ft_lstclear(ch_arr, free);
+	return (str);
 }
 
 void	formatter(t_list **ch_arr, char *type, va_list *args)
