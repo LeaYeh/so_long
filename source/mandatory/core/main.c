@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:01:47 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:32:34 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 14:40:15 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	{
 		if (!init_game(&game))
 			return (free_map(game.map), -1);
-		// if (!init_sprites(&game) || !init_player(&game) || !init_camera(&game))
 		if (!init_sprites(&game))
 		{
 			ft_dprintf(2, "Error\n");
