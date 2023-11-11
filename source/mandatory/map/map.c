@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:16:51 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:28:15 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	limit_args(t_map **map, int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_dprintf(2, "Need 1 argument.\n");
+		ft_dprintf(2, "Error\nNeed 1 argument.\n");
 		return (false);
 	}
 	(*map)->file_path = ft_strdup(argv[1]);
@@ -31,18 +31,18 @@ bool	open_map_file(t_map **map)
 
 	if (len < 5)
 	{
-		ft_dprintf(2, "Invalid map file name.\n");
+		ft_dprintf(2, "Error\nInvalid map file name.\n");
 		return (false);
 	}
 	if (ft_strncmp(((*map)->file_path + len - 4), ".ber", 4) != 0)
 	{
-		ft_dprintf(2, "Invalid map file extension.\n");
+		ft_dprintf(2, "Error\nInvalid map file extension.\n");
 		return (false);
 	}
 	(*map)->fd = open((*map)->file_path, O_RDONLY);
 	if ((*map)->fd == -1)
 	{
-		ft_dprintf(2, "Failed to read map file %s\n", (*map)->file_path);
+		ft_dprintf(2, "Error\nFailed to read map file %s\n", (*map)->file_path);
 		return (false);
 	}
 	return (true);
@@ -129,6 +129,6 @@ bool	init_map(t_game *game, int argc, char **argv)
 		return (free_map(game->map), false);
 	if (!check_workable(game->map))
 		return (free_map(game->map),
-			ft_dprintf(2, "The map is not workable.\n"), false);
+			ft_dprintf(2, "Error\nThe map is not workable.\n"), false);
 	return (true);
 }

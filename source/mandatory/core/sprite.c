@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:21:02 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:28:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool	load_sprite(t_game *game, char *category, int num)
 		if (fd < 0)
 		{
 			perror("");
-			ft_dprintf(2, "Invalid texture path: %s\n", path);
+			ft_dprintf(2, "Error\nInvalid texture path: %s\n", path);
 			return (free(path), false);
 		}
 		load_sprite_category(game, category, path, i);
@@ -80,6 +80,6 @@ bool	init_sprites(t_game *game)
 		!load_sprite(game, "player", 2) || \
 		!load_sprite(game, "collect", 6) || \
 		!load_sprite(game, "exit", 1))
-		return (ft_dprintf(2, "Load image failed.\n"), false);
+		return (ft_dprintf(2, "Error\nLoad image failed.\n"), false);
 	return (true);
 }

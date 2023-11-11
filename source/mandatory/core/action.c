@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:01:13 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:42:36 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:30:04 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	detect_obstacle(t_map *map, t_pos pos)
 
 bool	move(t_game *game, char item, int offset_row, int offset_col)
 {
-	if (item != 'P' && item != 'M')
+	if (item != 'P')
 		return (false);
 	if (item == 'P')
 		assign_pos(&(game->player.next_pos), \
@@ -32,7 +32,7 @@ bool	move(t_game *game, char item, int offset_row, int offset_col)
 
 bool	change_direction(t_game *game, char item, int direction)
 {
-	if (item != 'P' && item != 'M')
+	if (item != 'P')
 		return (false);
 	if (item == 'P')
 		game->player.direction = direction;

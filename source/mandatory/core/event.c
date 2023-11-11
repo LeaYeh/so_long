@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 22:20:20 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 19:00:45 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:29:31 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	on_keybord(int key_code, t_game *game)
 		move(game, 'P', 0, 1);
 		change_direction(game, 'P', 0);
 	}
+	else
+		return (1);
 	game_process(game);
 	return (0);
 }

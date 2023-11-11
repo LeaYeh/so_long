@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:42:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 13:57:28 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:30:26 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ bool	check_object_count(t_map *map)
 {
 	if (map->player_cnt != 1)
 		return (
-			ft_dprintf(2, "Player count: %d != 1\n", map->player_cnt), false);
+			ft_dprintf(2,
+				"Error\nPlayer count: %d != 1\n", map->player_cnt), false);
 	if (map->collect_cnt < 1)
-		return (ft_dprintf(2, "Collection count: %d < 1\n",
+		return (ft_dprintf(2, "Error\nCollection count: %d < 1\n",
 				map->collect_cnt), false);
 	if (map->exit_cnt != 1)
 		return (
-			ft_dprintf(2, "Exit count: %d < 1\n", map->exit_cnt), false);
+			ft_dprintf(2, "Error\nExit count: %d < 1\n", map->exit_cnt), false);
 	return (true);
 }
 
@@ -114,10 +115,8 @@ bool	check_map_input(t_map *map)
 				map->collect_cnt++;
 			else if (map->grid[row][col] == 'E')
 				map->exit_cnt++;
-			else if (map->grid[row][col] == 'M')
-				map->monster_cnt++;
 			else if (map->grid[row][col] != '0' && map->grid[row][col] != '1')
-				return (ft_dprintf(2, "Invalid conent of '%c'\n",
+				return (ft_dprintf(2, "Error\nInvalid content of '%c'\n",
 						map->grid[row][col]), false);
 			col++;
 		}

@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:01:47 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:40:15 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:27:25 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ int	main(int argc, char **argv)
 		if (!init_game(&game))
 			return (free_map(game.map), -1);
 		if (!init_sprites(&game))
-		{
-			ft_dprintf(2, "Error\n");
-			free_map(game.map);
-			free_mlx(&game);
-			return (-1);
-		}
+			return (free_map(game.map), free_mlx(&game), -1);
 		if (!init_player(&game))
 			return (free_game(&game), -1);
 		if (!init_camera(&game))
@@ -35,6 +30,4 @@ int	main(int argc, char **argv)
 		init_process(&game);
 		mlx_loop(game.mlx);
 	}
-	else
-		ft_dprintf(2, "Error\n");
 }
