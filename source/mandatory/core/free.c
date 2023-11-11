@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:40:38 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 21:55:43 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 14:23:35 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ void	free_2darray(char **arr, int idx)
 
 	i = 0;
 	while (i < idx)
-	{
-		free(arr[i]);
-		i++;
-	}
+		free(arr[i++]);
 	free(arr);
 }
 
 void	free_map(t_map *map)
 {
+	if (!map)
+		return ;
 	free_2darray(map->grid, map->height);
 	free(map->file_path);
 	free(map);
@@ -45,24 +44,6 @@ void	free_sprite(t_game *game, void **sprite, int num)
 			mlx_destroy_image(game->mlx, sprite[i++]);
 	}
 }
-
-// void	free_sprite(t_game *game, char *category, int num)
-// {
-// 	int		i;
-
-// 	if (ft_strcmp(category, "player") == 0)
-// 	{
-// 		i = 0;
-// 		while (i < num)
-// 			mlx_destroy_image(game->mlx, game->s_player[i++]);
-// 	}
-// 	else if (ft_strcmp(category, "collect") == 0)
-// 	{
-// 		i = 0;
-// 		while (i < num)
-// 			mlx_destroy_image(game->mlx, game->s_collect[i++]);
-// 	}
-// }
 
 void	free_mlx(t_game *game)
 {

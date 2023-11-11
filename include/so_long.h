@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:33:58 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 19:45:58 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 13:23:46 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ bool	change_direction(t_game *game, char item, int direction);
 /* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
+void	terminate_gnl(int fd);
 /* Free */
 void	free_game(t_game *game);
 void	free_mlx(t_game *game);

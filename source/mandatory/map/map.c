@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 20:46:23 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 14:16:51 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	limit_args(t_map **map, int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_dprintf(2, "Error\nNeed 1 argument.\n");
+		ft_dprintf(2, "Need 1 argument.\n");
 		return (false);
 	}
 	(*map)->file_path = ft_strdup(argv[1]);
@@ -31,18 +31,18 @@ bool	open_map_file(t_map **map)
 
 	if (len < 5)
 	{
-		ft_dprintf(2, "Error\nInvalid map file name.\n");
+		ft_dprintf(2, "Invalid map file name.\n");
 		return (false);
 	}
 	if (ft_strncmp(((*map)->file_path + len - 4), ".ber", 4) != 0)
 	{
-		ft_dprintf(2, "Error\nInvalid map file extension.\n");
+		ft_dprintf(2, "Invalid map file extension.\n");
 		return (false);
 	}
 	(*map)->fd = open((*map)->file_path, O_RDONLY);
 	if ((*map)->fd == -1)
 	{
-		ft_dprintf(2, "Error\nFailed to read map file %s\n", (*map)->file_path);
+		ft_dprintf(2, "Failed to read map file %s\n", (*map)->file_path);
 		return (false);
 	}
 	return (true);
@@ -81,29 +81,28 @@ bool	load_map(t_map **map)
 {
 	char	*line;
 	int		i;
+	bool	ret;
 
+	ret = true;
 	i = 0;
-	(*map)->grid = (char **)malloc(sizeof(char *) * ((*map)->height + 1));
+	(*map)->grid = (char **)malloc(sizeof(char *) * (*map)->height);
+	if (!(*map)->grid)
+		return (false);
 	while (i < (*map)->height)
 	{
 		line = get_next_line((*map)->fd);
 		if (!remove_last_newline(&line))
-			return (free_2darray((*map)->grid, i), free(line), false);
+			return (terminate_gnl((*map)->fd),
+				free_2darray((*map)->grid, i), free(line), false);
 		if ((int)ft_strlen(line) != (*map)->width)
-		{
-			ft_dprintf(2, "Error\nInvalid shape of map\n");
-			close((*map)->fd);
-			get_next_line((*map)->fd);
-			return (free_2darray((*map)->grid, i), free(line), false);
-		}
-		(*map)->grid[i] = ft_strdup(line);
-		if (!(*map)->grid[i])
-			return (free_2darray((*map)->grid, i), free(line), false);
-		free(line);
+			ret = false;
+		(*map)->grid[i] = line;
 		i++;
 	}
-	(*map)->grid[(*map)->height] = NULL;
-	return (true);
+	if (!ret)
+		return (
+			terminate_gnl((*map)->fd), free_2darray((*map)->grid, i), false);
+	return (terminate_gnl((*map)->fd), true);
 }
 
 bool	init_map(t_game *game, int argc, char **argv)
@@ -125,14 +124,11 @@ bool	init_map(t_game *game, int argc, char **argv)
 		return (free(game->map->file_path), free(game->map), false);
 	if (!open_map_file(&(game->map)) || !load_map(&(game->map)))
 		return (free(game->map->file_path), free(game->map), false);
-	if (game->map->width < 3 || game->map->height < 3)
-		return (free_map(game->map),
-			ft_dprintf(2, "Error\nInvalid size of map.\n"), false);
 	if (!check_map_input(game->map) || !check_object_count(game->map) || \
 		!check_wall_surround(game->map))
 		return (free_map(game->map), false);
 	if (!check_workable(game->map))
 		return (free_map(game->map),
-			ft_dprintf(2, "Error\nThe map is not workable.\n"), false);
+			ft_dprintf(2, "The map is not workable.\n"), false);
 	return (true);
 }

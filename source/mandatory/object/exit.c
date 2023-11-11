@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:24:57 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 19:03:05 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 13:50:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	interact_exit(t_game *game)
 		game->map->grid[pos.row][pos.col] == 'E')
 	{
 		ft_dprintf(1, "YOU WIN!\n");
-		free_game(game);
+		close_game(game);
 	}
 }
 
