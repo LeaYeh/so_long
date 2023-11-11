@@ -6,6 +6,7 @@ LIBFT_DIR	:= ../libft
 
 MAIN_SRCS	:= ft_dprintf.c \
 			ft_sprintf.c \
+			ft_sprintf_utils.c \
 			ft_print_char.c \
 			ft_print_string.c \
 			ft_print_int.c \
