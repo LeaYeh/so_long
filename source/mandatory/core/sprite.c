@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 20:01:25 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:28:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,17 @@ char	*get_sprite_path(char *category, int n)
 {
 	char	*path;
 
-	if (ft_strcmp(OS, "macos"))
-		ft_sprintf(&path, "%s/%s/%d.png", TEXTURES_FOLDER, category, n);
-	else
-		ft_sprintf(&path, "%s/%s/%d.xpm", TEXTURES_FOLDER, category, n);
+	ft_sprintf(&path, "%s/%s/%d.xpm", TEXTURES_FOLDER, category, n);
 	return (path);
 }
 
 void	*file_to_image(void *mlx_ptr, char *filename, int *width, int *height)
 {
-	if (ft_strcmp(OS, "macos"))
-		return (mlx_png_file_to_image(mlx_ptr, filename, width, height));
-	else
-		return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
+	return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
 }
 
-void	load_sprite_category(t_game *game, char *category, char *file_path, int i)
+void	load_sprite_category(
+	t_game *game, char *category, char *file_path, int i)
 {
 	int		size;
 
@@ -68,7 +63,7 @@ bool	load_sprite(t_game *game, char *category, int num)
 		if (fd < 0)
 		{
 			perror("");
-			ft_dprintf(2, "Invalid texture path: %s\n", path);
+			ft_dprintf(2, "Error\nInvalid texture path: %s\n", path);
 			return (free(path), false);
 		}
 		load_sprite_category(game, category, path, i);
@@ -85,6 +80,6 @@ bool	init_sprites(t_game *game)
 		!load_sprite(game, "player", 2) || \
 		!load_sprite(game, "collect", 6) || \
 		!load_sprite(game, "exit", 1))
-		return (false);
+		return (ft_dprintf(2, "Error\nLoad image failed.\n"), false);
 	return (true);
 }

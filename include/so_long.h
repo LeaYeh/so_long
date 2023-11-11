@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 16:33:58 by lyeh              #+#    #+#             */
+/*   Updated: 2023/11/11 13:23:46 by lyeh             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
 /* open, close */
 # include <fcntl.h>
-/* malloc, free */ 
+/* malloc, free */
 # include <stdlib.h>
-/* perror, strerror */ 
+/* perror, strerror */
 # include <stdio.h>
 # include <stdbool.h>
 # include <mlx.h>
@@ -15,7 +27,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# ifdef __LINUX__
+# ifdef __linux__
 #  define OS "linux"
 #  define LETTER_KEY_LEFT		97
 #  define LETTER_KEY_RIGHT		100
@@ -50,10 +62,8 @@
 # define BLOC_PX 100
 
 # ifndef BUFFER_SIZE
-# 	define BUFFER_SIZE 128
+#  define BUFFER_SIZE 128
 # endif
-
-// # define WINDOW_HEIGHT 768
 
 typedef struct s_pos {
 	int	row;
@@ -108,8 +118,8 @@ bool	offset_camera_by_player(t_game *game);
 /* Map */
 bool	init_map(t_game *game, int argc, char **argv);
 bool	check_map_input(t_map *map);
-bool    check_object_count(t_map *map);
-bool    check_wall_surround(t_map *map);
+bool	check_object_count(t_map *map);
+bool	check_wall_surround(t_map *map);
 bool	check_workable(t_map *map);
 /* Position */
 t_pos	*get_item_pos(t_map *map, char item);
@@ -122,6 +132,7 @@ void	draw_background(t_game *game);
 void	draw_wall(t_game *game);
 void	draw_collect(t_game *game);
 void	draw_player(t_game *game);
+void	render_items(t_game *game);
 /* Background */
 void	process_background(t_game *game);
 /* Player */
@@ -143,10 +154,12 @@ bool	change_direction(t_game *game, char item, int direction);
 /* Utils */
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
+void	terminate_gnl(int fd);
 /* Free */
 void	free_game(t_game *game);
+void	free_mlx(t_game *game);
 void	free_map(t_map *map);
-void    free_2darray(char **arr, int idx);
+void	free_2darray(char **arr, int idx);
 /* Debug */
 void	print_2darray(char **content, int height, int width);
 

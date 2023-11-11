@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:45:21 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:50:25 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/10 16:36:09 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	draw_collect(t_game *game)
 		while (col < game->map->width)
 		{
 			if (game->map->grid[row][col] == 'C')
-				draw_block(game, game->s_collect[0], row * BLOC_PX, col * BLOC_PX);
+				draw_block(
+					game, game->s_collect[0], row * BLOC_PX, col * BLOC_PX);
 			col++;
 		}
 		row++;

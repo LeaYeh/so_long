@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:24:57 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:55:19 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 13:50:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	interact_exit(t_game *game)
 
 void	process_exit(t_game *game)
 {
-    if (game->collect_cnt == game->map->collect_cnt)
+	if (game->collect_cnt == game->map->collect_cnt)
 		draw_exit(game);
 	interact_exit(game);
 }

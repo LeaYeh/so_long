@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:12:02 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/05 17:01:03 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/11 13:23:16 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ char	**copy_2darray(char **arr, int height)
 	}
 	new_arr[height] = NULL;
 	return (new_arr);
+}
+
+void	terminate_gnl(int fd)
+{
+	close(fd);
+	get_next_line(fd);
 }
