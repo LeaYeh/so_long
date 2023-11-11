@@ -17,10 +17,11 @@ ARFLAGS		= -crs
 
 all:		$(NAME)
 
-$(NAME):	premake $(AR_FILES)
+$(NAME):	$(AR_FILES)
+			@cp $(LIBFT_DIR)/libft.h $(PRINTF_DIR)/includes/ft_printf.h $(GNL_DIR)/get_next_line.h $(BUILD_DIR)
 			$(AR) $(ARFLAGS) $(NAME) $(AR_FILES)
 
-premake:	
+$(AR_FILES):	
 			@make -C $(LIBFT_DIR) bonus
 			@make -C $(PRINTF_DIR) all
 			@make -C $(GNL_DIR) all

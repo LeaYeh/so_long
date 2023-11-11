@@ -58,20 +58,20 @@ $(BUILD_DIR)/%.o: $(MAJOR_DIR)/%.c
 
 all: 		$(NAME)
 
-$(NAME): 	premake $(OBJS)
+$(NAME): 	$(AR_FILES) $(OBJS)
 			$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(AR_FILES) $(MLX_FLAGS) -o $(NAME)
-			@echo "$(GREEN)> All success! $(END)"
+			@echo "> $(GREEN)All success!$(END)"
 
-premake:
+$(AR_FILES):
 			@make -s -C $(LIB_DIR)
 			@echo "$(GREEN)> Pre-make success! $(END)"
 
 clean:
 			@make -s -C $(LIB_DIR) clean
-			$(RM) -rf $(BUILD_DIR)
+			@$(RM) -rf $(BUILD_DIR)
 
 fclean:		clean
 			@make -s -C $(LIB_DIR) fclean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re: 		fclean all
