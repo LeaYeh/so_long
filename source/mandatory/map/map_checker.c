@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:42:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 18:30:26 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/13 17:52:37 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ bool	check_map_input(t_map *map)
 	int	row;
 	int	col;
 
+	if (map->height < 3 || map->width < 3)
+		return (ft_dprintf(2, "Error\nInvalid content of map\n", false));
 	row = 0;
 	while (row < map->height)
 	{

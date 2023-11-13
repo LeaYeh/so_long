@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:55:05 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 18:28:15 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/13 17:58:34 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ bool	limit_args(t_map **map, int argc, char **argv)
 bool	open_map_file(t_map **map)
 {
 	const int	len = ft_strlen((*map)->file_path);
+	char		*last_slash;
 
-	if (len < 5)
+	last_slash = ft_strrchr((*map)->file_path, '/');
+	if (ft_strlen(last_slash + 1) < 5)
 	{
 		ft_dprintf(2, "Error\nInvalid map file name.\n");
 		return (false);
@@ -92,7 +94,8 @@ bool	load_map(t_map **map)
 	{
 		line = get_next_line((*map)->fd);
 		if (!remove_last_newline(&line))
-			return (terminate_gnl((*map)->fd),
+			return (ft_dprintf(2, "Error\nInvalid size of map\n"),
+				terminate_gnl((*map)->fd),
 				free_2darray((*map)->grid, i), free(line), false);
 		if ((int)ft_strlen(line) != (*map)->width)
 			ret = false;
@@ -100,7 +103,7 @@ bool	load_map(t_map **map)
 		i++;
 	}
 	if (!ret)
-		return (
+		return (ft_dprintf(2, "Error\nInvalid size of map\n"),
 			terminate_gnl((*map)->fd), free_2darray((*map)->grid, i), false);
 	return (terminate_gnl((*map)->fd), true);
 }
