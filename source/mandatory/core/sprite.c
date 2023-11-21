@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/21 13:59:18 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 14:39:34 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ void	*file_to_image(void *mlx_ptr, char *filename, int *width, int *height)
 	return (mlx_xpm_file_to_image(mlx_ptr, filename, width, height));
 }
 
-void	load_sprite_category(
+bool	load_sprite_category(
 	t_game *game, char *category, char *file_path, int i)
 {
 	int		size;
+	void	*tmp_img;
 
 	size = BLOC_PX;
+	tmp_img = file_to_image(game->mlx, file_path, &size, &size);
+	if (!tmp_img)
+		return (false);
 	if (ft_strcmp(category, "background") == 0)
-		game->s_background[i] = \
-			file_to_image(game->mlx, file_path, &size, &size);
+		game->s_background[i] = tmp_img;
 	else if (ft_strcmp(category, "wall") == 0)
-		game->s_wall[i] = \
-			file_to_image(game->mlx, file_path, &size, &size);
+		game->s_wall[i] = tmp_img;
 	else if (ft_strcmp(category, "player") == 0)
-		game->s_player[i] = \
-			file_to_image(game->mlx, file_path, &size, &size);
+		game->s_player[i] = tmp_img;
 	else if (ft_strcmp(category, "collect") == 0)
-		game->s_collect[i] = \
-			file_to_image(game->mlx, file_path, &size, &size);
+		game->s_collect[i] = tmp_img;
 	else if (ft_strcmp(category, "exit") == 0)
-		game->s_exit[i] = \
-			file_to_image(game->mlx, file_path, &size, &size);
+		game->s_exit[i] = tmp_img;
+	return (true);
 }
 
 bool	load_sprite(t_game *game, char *category, int num)
@@ -67,7 +67,10 @@ bool	load_sprite(t_game *game, char *category, int num)
 				free_sprite(game, get_sprite_by_category(game, category), i),
 				false);
 		}
-		load_sprite_category(game, category, path, i);
+		if (!load_sprite_category(game, category, path, i))
+			return (free(path),
+				free_sprite(game, get_sprite_by_category(game, category), i),
+				false);
 		free(path);
 		i++;
 	}

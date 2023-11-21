@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:56:46 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/09 17:45:12 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 14:24:33 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_background(t_game *game)
 		col = 0;
 		while (col < game->map->width)
 		{
-			draw_block(game, game->s_background, row * BLOC_PX, col * BLOC_PX);
+			draw_block(game, game->s_background[0], row * BLOC_PX, col * BLOC_PX);
 			col++;
 		}
 		row++;
