@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:22:12 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/10 16:36:28 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 14:55:11 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_pos	*get_item_pos(t_map *map, char item)
 		}
 		row++;
 	}
-	return (NULL);
+	return (free(pos), NULL);
 }
 
 void	assign_pos(t_pos *dest, int row, int col)

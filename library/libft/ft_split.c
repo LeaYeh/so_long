@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 14:16:35 by lyeh              #+#    #+#             */
-/*   Updated: 2023/09/11 16:26:14 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 15:11:05 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ char	**ft_split(char const *s, char c)
 	size_t		j;
 
 	start = -1;
-	i = 0;
+	i = -1;
 	j = 0;
 	ret = (char **)malloc(sizeof(char *) * (_count_word(s, c) + 1));
-	if (!s || !ret)
+	if (!ret)
 		return (NULL);
-	while (i <= ft_strlen(s) && _count_word(s, c) > 0)
+	while (s && ++i <= ft_strlen(s) && _count_word(s, c) > 0)
 	{
 		if (s[i] != c && start == -1)
 			start = i;
@@ -74,7 +74,6 @@ char	**ft_split(char const *s, char c)
 				return (NULL);
 			start = -1;
 		}
-		i++;
 	}
 	ret[j] = NULL;
 	return (ret);

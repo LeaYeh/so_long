@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:27:01 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:50:07 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 15:22:02 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*convert_lst2str(t_list **ch_arr)
 	char	*str;
 	t_list	*root;
 
+	if (!ch_arr)
+		return (NULL);
 	root = *ch_arr;
 	len = ft_lstsize(*ch_arr);
 	str = (char *)malloc(sizeof(char) * (len + 1));
@@ -28,6 +30,8 @@ char	*convert_lst2str(t_list **ch_arr)
 	i = 0;
 	while (i < len)
 	{
+		if (!(*ch_arr) || !((*ch_arr)->content))
+			return (free(str), NULL);
 		str[i] = *((char *)((*ch_arr)->content));
 		(*ch_arr) = (*ch_arr)->next;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 14:48:03 by lyeh              #+#    #+#             */
-/*   Updated: 2023/10/31 21:45:07 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 15:02:00 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ char	*get_next_line(int fd)
 	}
 	buf_save[fd] = _update_buf(buf_save[fd]);
 	if (!buf_save[fd])
-		return (NULL);
+		return (free(line), NULL);
 	return (line);
 }
