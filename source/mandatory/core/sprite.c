@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:01:50 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/13 18:05:00 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 13:59:18 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	load_sprite_category(
 
 	size = BLOC_PX;
 	if (ft_strcmp(category, "background") == 0)
-		game->s_background = \
+		game->s_background[i] = \
 			file_to_image(game->mlx, file_path, &size, &size);
 	else if (ft_strcmp(category, "wall") == 0)
-		game->s_wall = \
+		game->s_wall[i] = \
 			file_to_image(game->mlx, file_path, &size, &size);
 	else if (ft_strcmp(category, "player") == 0)
 		game->s_player[i] = \
@@ -44,7 +44,7 @@ void	load_sprite_category(
 		game->s_collect[i] = \
 			file_to_image(game->mlx, file_path, &size, &size);
 	else if (ft_strcmp(category, "exit") == 0)
-		game->s_exit = \
+		game->s_exit[i] = \
 			file_to_image(game->mlx, file_path, &size, &size);
 }
 
@@ -63,7 +63,9 @@ bool	load_sprite(t_game *game, char *category, int num)
 		if (fd < 0)
 		{
 			ft_dprintf(2, "Error\nInvalid texture path: %s\n", path);
-			return (free(path), false);
+			return (free(path),
+				free_sprite(game, get_sprite_by_category(game, category), i),
+				false);
 		}
 		load_sprite_category(game, category, path, i);
 		free(path);
@@ -74,11 +76,24 @@ bool	load_sprite(t_game *game, char *category, int num)
 
 bool	init_sprites(t_game *game)
 {
-	if (!load_sprite(game, "background", 1) || \
-		!load_sprite(game, "wall", 1) || \
-		!load_sprite(game, "player", 2) || \
-		!load_sprite(game, "collect", 6) || \
-		!load_sprite(game, "exit", 1))
-		return (ft_dprintf(2, "Error\nLoad image failed.\n"), false);
+	if (!load_sprite(game, "background", 1))
+		return (false);
+	if (!load_sprite(game, "wall", 1))
+		return (free_sprite(game, game->s_background, 1), false);
+	if (!load_sprite(game, "exit", 1))
+		return (free_sprite(game, game->s_background, 1),
+			free_sprite(game, game->s_wall, 1),
+			false);
+	if (!load_sprite(game, "player", 2))
+		return (free_sprite(game, game->s_background, 1),
+			free_sprite(game, game->s_wall, 1),
+			free_sprite(game, game->s_exit, 1),
+			false);
+	if (!load_sprite(game, "collect", 6))
+		return (free_sprite(game, game->s_background, 1),
+			free_sprite(game, game->s_wall, 1),
+			free_sprite(game, game->s_exit, 1),
+			free_sprite(game, game->s_player, 2),
+			false);
 	return (true);
 }

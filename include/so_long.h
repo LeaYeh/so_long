@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:33:58 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 13:23:46 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 13:52:35 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ typedef struct s_game {
 	t_player	player;
 	void		*s_player[2];
 	void		*s_collect[6];
-	void		*s_background;
-	void		*s_wall;
-	void		*s_exit;
+	void		*s_background[1];
+	void		*s_wall[1];
+	void		*s_exit[1];
 	t_pos		window_offset;
 	int			collect_cnt;
 }	t_game;
@@ -155,11 +155,13 @@ bool	change_direction(t_game *game, char item, int direction);
 int		get_array_len(void **arr);
 char	**copy_2darray(char **arr, int height);
 void	terminate_gnl(int fd);
+void	**get_sprite_by_category(t_game *game, char *category);
 /* Free */
 void	free_game(t_game *game);
 void	free_mlx(t_game *game);
 void	free_map(t_map *map);
 void	free_2darray(char **arr, int idx);
+void	free_sprite(t_game *game, void **sprite, int num);
 /* Debug */
 void	print_2darray(char **content, int height, int width);
 

@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:12:02 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/13 20:13:09 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 13:51:53 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,19 @@ void	terminate_gnl(int fd)
 {
 	close(fd);
 	get_next_line(fd);
+}
+
+void	**get_sprite_by_category(t_game *game, char *category)
+{
+	if (ft_strcmp(category, "background") == 0)
+		return (game->s_background);
+	else if (ft_strcmp(category, "wall") == 0)
+		return (game->s_wall);
+	else if (ft_strcmp(category, "player") == 0)
+		return (game->s_player);
+	else if (ft_strcmp(category, "collect") == 0)
+		return (game->s_collect);
+	else if (ft_strcmp(category, "exit") == 0)
+		return (game->s_exit);
+	return (NULL);
 }

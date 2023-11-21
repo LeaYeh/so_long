@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:40:38 by lyeh              #+#    #+#             */
-/*   Updated: 2023/11/11 14:23:35 by lyeh             ###   ########.fr       */
+/*   Updated: 2023/11/21 13:47:55 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	free_game(t_game *game)
 {
 	free_sprite(game, game->s_collect, 6);
 	free_sprite(game, game->s_player, 2);
-	free_sprite(game, &(game->s_background), 1);
-	free_sprite(game, &(game->s_wall), 1);
-	free_sprite(game, &(game->s_exit), 1);
+	free_sprite(game, game->s_background, 1);
+	free_sprite(game, game->s_wall, 1);
+	free_sprite(game, game->s_exit, 1);
 	free_mlx(game);
 	free_map(game->map);
 }
