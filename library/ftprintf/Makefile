@@ -43,7 +43,7 @@ all:		$(NAME)
 
 clean:
 			@make -C $(LIBFT_DIR) clean
-			$(RM) $(BUILD_DIR)/*.o
+			$(RM) -r $(BUILD_DIR)
 
 fclean:		clean
 			@make -C $(LIBFT_DIR) fclean
